@@ -3,16 +3,33 @@
 using namespace std;
 
 
-int
-main ()
+int main ()
 {
 
     char AB = '-';
     char ID = '|';
-  int pos_x = 30;
-  int pos_y = 10;
-  int neg_x = - (pos_x);
-  int neg_y = - (pos_y);
+    int pos_x = 30;
+    int pos_y = 10;
+    int neg_x = - (pos_x);
+    int neg_y = - (pos_y);
+  
+    int coordX1;
+    int coordY1;
+    int coordX2;
+    int coordY2;
+    
+    
+    std::cout << "ingrese la coordenada X1: ";
+    std::cin >> coordX1;
+    
+    std::cout << "ingrese la coordenada Y1: ";
+    std::cin >> coordY1;
+    
+    std::cout << "ingrese la coordenada X2: ";
+    std::cin >> coordY2;
+    
+    std::cout << "ingrese la coordenada Y2: ";
+    std::cin >> coordX2;
   
     for (int y = pos_y; y >= neg_y; y--)	//filas
     {
@@ -48,16 +65,25 @@ main ()
 	    }
 	    ////////////////////////////////////////////////////////
 	    
-	    if(x == 15 && y == 5)
+	    if(x == coordX1 && y == coordY1)
 	    {
 	        cout<< "+";
 	        
 	        espacio = false;
 	    }
 	    
-	    if(x == 0 || y == 0 )
+	    if(x == coordX2 && y == coordY2)
+	    {
+	        cout<< "+";
+	        
+	        espacio = false;
+	    }
+	    
+	    if(x == 0 || y == 0 && y < pos_x )
 	    {
 	        cout << ".";
+	        
+	        espacio = false;
 	    }
 	    
 	    //////////////////////////////////////////////////////
