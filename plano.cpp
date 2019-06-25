@@ -18,6 +18,8 @@ int main ()
     int coordX2;
     int coordY2;
     
+
+    
     
     std::cout << "ingrese la coordenada X1: ";
     std::cin >> coordX1;
@@ -30,6 +32,9 @@ int main ()
     
     std::cout << "ingrese la coordenada Y2: ";
     std::cin >> coordX2;
+    
+    int vector1 = coordX2 - coordX1;
+    int vector2 = coordY2 - coordY1;
   
     for (int y = pos_y; y >= neg_y; y--)	//filas
     {
@@ -73,6 +78,13 @@ int main ()
 	    }
 	    
 	    if(x == coordX2 && y == coordY2)
+	    {
+	        cout<< "+";
+	        
+	        espacio = false;
+	    }
+	    
+	    if(x == vector1 && y == vector2)
 	    {
 	        cout<< "+";
 	        
