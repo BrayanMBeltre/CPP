@@ -8,6 +8,8 @@
 #include <cstdlib>
 
 #include <typeinfo>
+
+#include <cctype>
    
 using namespace std;
 
@@ -16,6 +18,31 @@ void pokedex ();
 void pelear();
 void mi_pokemon();
 void page ();
+
+
+void extractIntegerWords(string str) 
+{ 
+    stringstream ss;     
+  
+    /* Storing the whole string into string stream */
+    ss << str; 
+  
+    /* Running loop till the end of the stream */
+    string temp; 
+    int found; 
+    while (!ss.eof()) { 
+  
+        /* extracting word by word from stream */
+        ss >> temp; 
+  
+        /* Checking the given word is integer or not */
+        if (stringstream(temp) >> found) 
+            cout << found << " "; 
+  
+        /* To save from space at the end of string */
+        temp = ""; 
+    } 
+} 
 
 int main()
 {
@@ -281,31 +308,104 @@ void mi_pokemon()
       }
 
   }
-
-
-  	std::cout << "poder de mi pokemon = "<< poder << endl;
-
-  		cout << typeid(poder).name() << endl;
-
-  		string
-
-	std::cout << "poder int  = " << poder   << endl;
-
-
-  	std::cout << "poder enemigo  = "<< poder_pokemon_enemigo   << endl;
-
-  	std::stoi(poder_pokemon_enemigo);
+  
+    		   	string str(poder);
+    		   
+    		   
+			    string temp;
+			    int number=0;
+			    
+			    for (unsigned int i=0; i < str.size(); i++)
+			    {
+			        //iterate the string to find the first "number" character
+			        //if found create another loop to extract it
+			        //and then break the current one
+			        //thus extracting the FIRST encountered numeric block
+			        if (isdigit(str[i]))
+			        {
+			            for (unsigned int a = i; a < str.size(); a++)
+			            {
+			                temp += str[a];               
+			            }
+			          //the first numeric block is extracted
+			          break;
+			        }    
+			    }
+			    
+			    std::istringstream stream(temp);
+			    
+			    stream >> number;
+			    
+			    std::cout << number << std::endl; 
+			    
+			    int poder_int = 0;
+			    
+				poder_int = number;
+    		
+    			cout<<"number / poder ALIADO " << poder_int + 1 << endl;
+    			
+    			
+    			
+    			
+    			
+    			
+    			
+    			
+    		   	string srt1(poder_pokemon_enemigo);
+			    srting temp12;
+			    int number1=0;
+			    
+			    for (unsigned int i=0; i < srt1.size(); i++)
+			    {
+			        //iterate the srt1ing to find the first "number1" character
+			        //if found create another loop to extract it
+			        //and then break the current one
+			        //thus extracting the FIRST encountered numeric block
+			        if (isdigit(srt1[i]))
+			        {
+			            for (unsigned int a = i; a < srt1.size(); a++)
+			            {
+			                temp12 += srt1[a];               
+			            }
+			          //the first numeric block is extracted
+			          break;
+			        }    
+			    }
+			    
+			    std::isrt1ingsrt1eam srt1eam(temp1);
+			    
+			    srt1eam >> number1;
+			    
+			    std::cout << number1 << std::endl; 
+			    
+			    int poder_enemigo_int = 0;
+			    
+				poder_enemigo_int = number1;
+    		
+    			cout<<"number1 / poder ENEMIGO " << poder_enemigo_int + 1 << endl;
+    			
+    			
+    			
+    			
+    			
+    			
+    			
+    			
+    			
+    			
+    			
+    			
+    			
+    			
+			     	 if (poder_int > poder_enemigo_int)
+				 	 {
+				 	 	std::cout << "Ganaste!!!" << endl;
+				 	 }else if (poder_enemigo_int > poder_int)
+				 	 {
+				 	 	std::cout << "Perdiste..."   << endl;
+				 	 }
+			    
 	
-
-
- 	 if (poder > poder_pokemon_enemigo)
- 	 {
- 	 	std::cout << "Ganaste!!!" << endl;
- 	 }else if (poder_pokemon_enemigo > poder)
- 	 {
- 	 	std::cout << "Perdiste..."   << endl;
- 	 }
-          
 ///////////////////////////////////////////////////////////
 
 
@@ -350,8 +450,3 @@ void page()
 {
    cout << "Haz entrado a la pagina!!";
 }
-
-
-
-
-
