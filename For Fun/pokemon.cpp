@@ -12,6 +12,14 @@ string poder_pokemon;
 string velocidad_pokemon;
 string tipo_pokemon;
 
+string nombre_pokemon_enemigo;
+string vida_pokemon_enemigo;
+string ataque_pokemon_enemigo;
+string defensa_pokemon_enemigo;
+string poder_pokemon_enemigo;
+string velocidad_pokemon_enemigo;
+string tipo_pokemon_enemigo;
+
 void menu();
 void registro();
 void volver();
@@ -21,56 +29,58 @@ void Ostream();
 void capturar ();
 void pokedex ();
 void combate();
+void p_aliado();
+void p_enemigo();
+int srt_to_int();
 
-void extractIntegerWords();
 
 
 ////////////////////////////////////////////////////////////////////////////
 //Menu
 void menu(){
 
-	int op;
+    int op;
 
-	cout << "1.- Capturar pokemon" << endl;
-	cout << "2.- Pokedex" << endl;
-	cout << "3.- Combate pokemon" << endl;
-	cout << "4.- Salir" << endl;
-	cout << "Introduzca la opcion deseada: ";
+    cout << "1.- Capturar pokemon" << endl;
+    cout << "2.- Pokedex" << endl;
+    cout << "3.- Combate pokemon" << endl;
+    cout << "4.- Salir" << endl;
+    cout << "Introduzca la opcion deseada: ";
 
-	cin >> op, cout << endl;
-	cin.ignore();
+    cin >> op, cout << endl;
+    cin.ignore();
 
-	if (op == 1)
-	{	
-		system("cls");
-		system("clear");
-		capturar();
+    if (op == 1)
+    {   
+        system("cls");
+        system("clear");
+        capturar();
 
-	}else if (op == 2)
-	{
-		system("cls");
-		system("clear");
-		pokedex();
+    }else if (op == 2)
+    {
+        system("cls");
+        system("clear");
+        pokedex();
 
-	}else if (op == 3)
-	{
-		system("cls");
-		system("clear");
-		combate();
+    }else if (op == 3)
+    {
+        system("cls");
+        system("clear");
+        combate();
 
-	}else if (op == 4)
-	{
-		system("cls");
-		system("clear");
-		exit(1);
+    }else if (op == 4)
+    {
+        system("cls");
+        system("clear");
+        exit(1);
 
-	}else
-	{
-		system("cls");
-		system("clear");
-		std::cout << "Ingrese una opcion valida." << endl;
-		menu();
-	}
+    }else
+    {
+        system("cls");
+        system("clear");
+        std::cout << "Ingrese una opcion valida." << endl;
+        menu();
+    }
 
 }
 
@@ -79,9 +89,9 @@ void menu(){
 
 int main()
 {
-	menu();
+    menu();
 
-	return 0;
+    return 0;
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -89,29 +99,9 @@ int main()
 
 void volver()
 {
-	system ("cls");
-	system ("clear");
-	main ();
-}
-
-/////////////////////////////////////////////////////////////////////////
-//ofstream
-
-void Ostream()
-{
-
-	ofstream archivo;
-
-	archivo.open ("pokedex.txt", ios::app | ios::out);
-
-	if (!archivo.is_open ())
-	{
-
-		archivo.open ("pokedex.txt", ios::in);
-
-	}
-
-	
+    system ("cls");
+    system ("clear");
+    main ();
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -119,63 +109,70 @@ void Ostream()
 
 void capturar()
 {
-	ofstream archivo;
+    ofstream archivo;
 
-	Ostream();
+    archivo.open ("pokedex.txt", ios::app | ios::out);
 
-	//Nombre pokemon
-	cout << "Nombre: ";
-	getline (cin, nombre_pokemon);
-	cout << endl;
+    if (!archivo.is_open ())
+    {
 
-	//Vida pokemon
-	cout << "Vida: ";
-	getline (cin, vida_pokemon);
-	cout << endl;
+        archivo.open ("pokedex.txt", ios::in);
 
-	//Ataque pokemon
-	cout << "Ataque: ";
-	getline (cin, ataque_pokemon);
-	cout << endl;
+    }
 
-	//Defensa pokemon
-	cout << "Defensa: ";
-	getline (cin, defensa_pokemon);
-	cout << endl;
+    //Nombre pokemon
+    cout << "Nombre: ";
+    getline (cin, nombre_pokemon);
+    cout << endl;
 
-	//Poder pokemon
-	cout << "Poder: ";
-	getline (cin, poder_pokemon);
-	cout << endl;
+    //Vida pokemon
+    cout << "Vida: ";
+    getline (cin, vida_pokemon);
+    cout << endl;
 
-	//Velocidad pokemon
-	cout << "Velocidad: ";
-	getline (cin, velocidad_pokemon);	
-	cout << endl;
+    //Ataque pokemon
+    cout << "Ataque: ";
+    getline (cin, ataque_pokemon);
+    cout << endl;
 
-	//Tipo pokemon
-	cout << "Tipo: ";
-	getline (cin, tipo_pokemon);
-	cout << endl;
+    //Defensa pokemon
+    cout << "Defensa: ";
+    getline (cin, defensa_pokemon);
+    cout << endl;
 
-	//Guardar en registro
-	archivo << "Nombre: "    << nombre_pokemon    << endl;
-	archivo << "Vida: "      << vida_pokemon      << endl;
-	archivo << "Ataque: "    << ataque_pokemon    << endl;
-	archivo << "Defensa: "   << defensa_pokemon   << endl;
-	archivo << "Poder: "     << poder_pokemon     << endl;
-	archivo << "Velocidad: " << velocidad_pokemon << endl;
-	archivo << "Tipo: "      << tipo_pokemon      << endl << endl;
+    //Poder pokemon
+    cout << "Poder: ";
+    getline (cin, poder_pokemon);
+    cout << endl;
 
-	cout << "Haz capturado a " << nombre_pokemon << "!!" << endl;
-	cout << "Presione cualquier tecla para continuar...";
+    //Velocidad pokemon
+    cout << "Velocidad: ";
+    getline (cin, velocidad_pokemon);   
+    cout << endl;
 
-	//Cerrar archivo
-	archivo.close ();
+    //Tipo pokemon
+    cout << "Tipo: ";
+    getline (cin, tipo_pokemon);
+    cout << endl;
 
-	cin.get();
+    //Guardar en registro
+    archivo << "Nombre: "    << nombre_pokemon    << endl;
+    archivo << "Vida: "      << vida_pokemon      << endl;
+    archivo << "Ataque: "    << ataque_pokemon    << endl;
+    archivo << "Defensa: "   << defensa_pokemon   << endl;
+    archivo << "Poder: "     << poder_pokemon     << endl;
+    archivo << "Velocidad: " << velocidad_pokemon << endl;
+    archivo << "Tipo: "      << tipo_pokemon      << endl << endl;
 
-	volver();
+    cout << "Haz capturado a " << nombre_pokemon << "!!" << endl;
+    cout << "Presione cualquier tecla para continuar...";
+
+    //Cerrar archivo
+    archivo.close ();
+
+    cin.get();
+
+    volver();
 
 }
 
@@ -184,38 +181,277 @@ void capturar()
 
 void pokedex ()
 {
-	ifstream archivo;
+    ifstream archivo;
 
-	string texto;
+    string texto;
 
-	if (!archivo.is_open ())
-	{
+    if (!archivo.is_open ())
+    {
 
-	archivo.open ("pokedex.txt", ios::in);
+    archivo.open ("pokedex.txt", ios::in);
 
-	}
+    }
 
-	//Mietras el registro tenga lineas...
-	while (getline (archivo, texto))
-	{
+    //Mietras el registro tenga lineas...
+    while (getline (archivo, texto))
+    {
 
-		//Imprimir linea y saltar linea
-		cout << texto << endl;
+        //Imprimir linea[0] y saltar linea[0]
+        cout << texto << endl;
 
-		//Guardar linea en texto
-		getline (archivo, texto);
+        //Guardar linea[0] en texto
+        getline (archivo, texto);
 
-		//Repetir
-		cout << texto << endl;
-		getline (archivo, texto);
-		cout << texto << endl;
+        //Repetir
+        cout << texto << endl;
+        getline (archivo, texto);
+        cout << texto << endl;
 
-	}
+    }
 
-	//Cerrar registro
-	archivo.close ();
+    //Cerrar registro
+    archivo.close ();
 
-	main ();
+    main ();
+
+}
+///////////////////////////////////////////////////////////////////////
+//Pokemon aliado
+
+void p_aliado()
+{
+    ifstream archivo;
+
+    string linea[7];
+
+    //Saber si el pokemon esta en el registro
+    int matchpokemon = 0;
+
+    cout << "Introduzca el pokemon: ";
+    cin >> nombre_pokemon;
+    cout << endl;
+
+    //Renombrar el nombre para que sea igual a Nombre: XXXXXXXXX 
+    //para que concuerde con el nombre en el Registro
+    nombre_pokemon = "Nombre: " + nombre_pokemon;
+
+    if (!archivo.is_open ())
+    {
+
+        archivo.open ("pokedex.txt", ios::in);
+
+    }
+
+    //Mientras el archivo tenga lineas ->
+    while (getline (archivo, linea[0]))
+    {
+
+        //Si Nombre: XXXX == Nombre: XXXX ->
+        if (nombre_pokemon == linea[0])
+        {
+
+            //Obtener las siquientes lineas mientras no sea una linea[0] en blanco
+            if (linea[0].find (nombre_pokemon) != string::npos)
+            {
+
+                //Esto es el vida = linea 2
+                getline (archivo, linea[0]);
+                vida_pokemon = linea[0];
+                cout << vida_pokemon << endl;
+
+                //Esto es el ataque = linea 3
+                getline (archivo, linea[1]);
+                ataque_pokemon = linea[1];
+                cout << ataque_pokemon << endl;
+
+                //Esto es la defensa = linea 4
+                getline (archivo, linea[2]);
+                defensa_pokemon = linea[2];
+                cout << defensa_pokemon << endl;
+
+                //Esto es la velocidad = linea 5
+                getline (archivo, linea[3]);
+                poder_pokemon = linea[3];
+                cout << poder_pokemon << endl;
+
+                //Esto es la velocidad = linea 6
+                getline (archivo, linea[5]);
+                velocidad_pokemon = linea[5];
+                cout << velocidad_pokemon << endl;
+
+                //Esto es la velocidad = linea 7
+                getline (archivo, linea[6]);
+                tipo_pokemon = linea[6];
+                cout << tipo_pokemon << endl;
+
+                cout << endl;
+
+                //El pokemon esta en el registro
+                matchpokemon = 1;
+
+            }
+
+        }
+    
+    }
+
+    //Cerrar registro
+    archivo.close ();
+
+    //El pokemon no esta en el registro
+    if (matchpokemon == 0)
+    {
+        cout << "pokemon no registrado." << endl;
+        cout << "Presione cualquier tecla para continuar...";
+        
+        cin.get();
+        cin.get();
+
+        volver();
+
+    }
+
+}
+
+/////////////////////////////////////////////////////////////////////
+//Pokemon enemigo
+
+void p_enemigo()
+{
+    ifstream archivo;
+
+    string linea[7];
+
+    //Saber si el pokemon esta en el registro
+    int matchpokemon = 0;
+
+    cout << "Introduzca el pokemon contra el que quiere combater: ", 
+    cin >> nombre_pokemon_enemigo, 
+    cout << endl;
+
+    //Renombrar el nombre para que sea igual a Nombre: XXXXXXXXX 
+    //para que concuerde con el nombre en el Registro
+    nombre_pokemon_enemigo = "Nombre: "+nombre_pokemon_enemigo;
+
+
+    if (!archivo.is_open ())
+    {
+
+        archivo.open ("pokedex.txt", ios::in);
+
+    }
+
+    while (getline (archivo, linea[0]))
+    {
+
+        if (nombre_pokemon_enemigo == linea[0])
+        {
+
+            if (linea[0].find (nombre_pokemon_enemigo) != string::npos)
+            {
+
+            //Esto es el vida = linea 2
+            getline (archivo, linea[0]);
+            vida_pokemon_enemigo = linea[0];
+            cout << vida_pokemon_enemigo << endl;
+
+            //Esto es el ataque = linea 3
+            getline (archivo, linea[1]);
+            ataque_pokemon_enemigo = linea[1];
+            cout << ataque_pokemon_enemigo << endl;
+
+            //Esto es la defensa = linea 4
+            getline (archivo, linea[2]);
+            defensa_pokemon_enemigo = linea[2];
+            cout << defensa_pokemon_enemigo << endl;
+
+            //Esto es la velocidad = linea 5
+            getline (archivo, linea[3]);
+            poder_pokemon_enemigo = linea[3];
+            cout << poder_pokemon_enemigo << endl;
+
+            //Esto es la velocidad = linea 6
+            getline (archivo, linea[5]);
+            velocidad_pokemon_enemigo = linea[5];
+            cout << velocidad_pokemon_enemigo << endl;
+
+            //Esto es la velocidad = linea 7
+            getline (archivo, linea[6]);
+            tipo_pokemon_enemigo = linea[6];
+            cout << tipo_pokemon_enemigo << endl;
+
+            cout << endl;
+
+            //El pokemon esta en el registro
+
+
+            matchpokemon = 1;
+
+            }
+
+        }
+
+    }
+
+    //Cerrar registro
+    archivo.close ();
+
+    //El pokemon no esta en el registro
+    if (matchpokemon == 0)
+    {
+        cout << "pokemon no registrado." << endl;
+        cout << "Presione cualquier tecla para continuar...";
+        
+        cin.get();
+        cin.get();
+
+        volver();
+
+    }
+
+}
+
+/////////////////////////////////////////////////////////////////////////
+//TOMAR EL VALOR NUMERO DEL TEXTO
+
+int srt_to_int(string texto)
+{
+
+    //Declarar string srt y se le otorga el valor de texto
+    string str(texto);
+
+    //variable temporal
+    string temp;
+
+    //variable entera donde se guardaran los numeros
+    int numero = 0;
+
+    //recorrer el texto
+    for (unsigned int i = 0; i < str.size(); i++)
+    {
+        /* iterar la cadena para encontrar el primer carácter "número"
+           si se encuentra crear otro bucle para extraerlo
+           y luego rompe el actual
+           extrayendo así el PRIMER bloque numérico encontrado */
+        if (isdigit(str[i]))
+        {
+            for (unsigned int a = i; a < str.size(); a++)
+            {
+                temp += str[a];               
+            }
+          //Se extrae el primer bloque numérico
+          break;
+        }    
+    }
+    //input stream class to operate on strings.
+    //http://www.cplusplus.com/reference/sstream/istringstream/
+    istringstream stream(temp);
+
+    //paso el valor de stream a numero
+    stream >> numero;
+
+    //Retornar el valor numerico
+    return numero;
 
 }
 
@@ -224,285 +460,22 @@ void pokedex ()
 
 void combate()
 {
+    p_aliado();
 
-	ifstream archivo;
+    p_enemigo();
 
-	string linea;
-	string linea2;
-	string linea3;
-	string linea4;
-	string linea5;
-	string linea6;
+    poder_pokemon = srt_to_int(poder_pokemon);
+    poder_pokemon_enemigo = srt_to_int(poder_pokemon_enemigo);
 
-	string pokemon;
-	string vida;
-	string poder;
-	string velocidad;
+     if (poder_pokemon > poder_pokemon_enemigo)
+     {
+        std::cout << "Ganaste!!!" << endl;
 
-	string pokemon_enemigo;
-	string vida_pokemon_enemigo;
-	string poder_pokemon_enemigo;
-	string velocidad_pokemon_enemigo;
+     }else if (poder_pokemon_enemigo > poder_pokemon)
+     {
+        std::cout << "Perdiste..."   << endl;
+     }
 
-	//Saber si el pokemon esta en el registro
-	int matchpokemon = 0;
 
-	cout << "Introduzca el pokemon: ";
-	cin >> nombre_pokemon;
-	cout << endl;
-
-	//Renombrar el nombre para que sea igual a Nombre: XXXXXXXXX 
-	//para que concuerde con el nombre en el Registro
-	nombre_pokemon = "Nombre: " + nombre_pokemon;
-
-	if (!archivo.is_open ())
-	{
-
-		archivo.open ("pokedex.txt", ios::in);
-
-	}
-
-	//Mientras el archivo tenga lineas ->
-	while (getline (archivo, linea))
-	{
-
-		//Si Nombre: XXXX == Nombre: XXXX ->
-		if (nombre_pokemon == linea)
-		{
-
-			//Obtener las siquientes lineas mientras no sea una linea en blanco
-			if (linea.find (nombre_pokemon) != string::npos)
-			{
-
-				//Esto es el vida = linea 2
-				getline (archivo, linea);
-				vida_pokemon = linea;
-				cout << vida_pokemon << endl;
-
-				//Esto es el ataque = linea 3
-				getline (archivo, linea2);
-				ataque_pokemon = linea2;
-				cout << ataque_pokemon << endl;
-
-				//Esto es la defensa = linea 4
-				getline (archivo, linea3);
-				defensa_pokemon = linea3;
-				cout << defensa_pokemon << endl;
-
-				//Esto es la velocidad = linea 5
-				getline (archivo, linea4);
-				poder_pokemon = linea4;
-				cout << poder_pokemon << endl;
-
-				//Esto es la velocidad = linea 6
-				getline (archivo, linea5);
-				velocidad_pokemon = linea5;
-				cout << velocidad_pokemon << endl;
-
-				//Esto es la velocidad = linea 7
-				getline (archivo, linea6);
-				tipo_pokemon = linea6;
-				cout << tipo_pokemon << endl;
-
-				cout << endl;
-
-				//El pokemon esta en el registro
-				matchpokemon = 1;
-
-			}
-
-
-		}
-
-	
-	}
-
-	//Cerrar registro
-	archivo.close ();
-
-	//El pokemon no esta en el registro
-	if (matchpokemon == 0)
-	{
-		cout << "pokemon no registrado." << endl;
-		cout << "Presione cualquier tecla para continuar...";
-		
-		cin.get();
-		cin.get();
-
-		volver();
-	}
-/////////////////////////////////////////////////////////////////////////////
-//POKEMON ENEMIGO
-
-
-	cout << "Introduzca el pokemon contra el que quiere combater: ", 
-	cin >> pokemon_enemigo, 
-	cout << endl;
-
-	pokemon_enemigo = "Nombre: "+pokemon_enemigo;
-
-	if (!archivo.is_open ())
-	{
-
-		archivo.open ("capturar.txt", ios::in);
-
-	}
-
-	while (getline (archivo, linea))
-	{
-
-		if (pokemon_enemigo == linea)
-		{
-
-			if (linea.find (pokemon_enemigo) != string::npos)
-			{
-
-			//Esto es el vida = linea 2
-			getline (archivo, linea);
-			vida_pokemon_enemigo = linea;
-			cout << vida_pokemon_enemigo << endl;
-
-			//Esto es el poder = linea 3
-			getline (archivo, linea2);
-			poder_pokemon_enemigo = linea2;
-			cout << poder_pokemon_enemigo << endl;
-
-			//Esto es la velocidad = linea 4
-			getline (archivo, linea3);
-			velocidad_pokemon_enemigo = linea3;
-			cout << velocidad_pokemon_enemigo << endl;
-
-
-			matchpokemon = 1;
-
-			}
-
-		}
-
-	}
-
-//////////////////////////////////////////////////////////////////
-//STRING TO INT pokemon aliado
-
-	string str(poder);
-
-	string temp;
-	int number=0;
-
-	for (unsigned int i=0; i < str.size(); i++)
-	{
-	    //iterate the string to find the first "number" character
-	    //if found create another loop to extract it
-	    //and then break the current one
-	    //thus extracting the FIRST encountered numeric block
-	    if (isdigit(str[i]))
-	    {
-	        for (unsigned int a = i; a < str.size(); a++)
-	        {
-	            temp += str[a];               
-	        }
-	      //the first numeric block is extracted
-	      break;
-	    }    
-	}
-
-	std::istringstream stream(temp);
-
-	stream >> number;
-
-	std::cout << number << std::endl; 
-
-	int poder_int = 0;
-
-	poder_int = number;
-
-	cout<<"number / poder ALIADO " << poder_int + 1 << endl;
-
-//////////////////////////////////////////////////////////////////
-//STRING TO INT pokemon enemigo
-
-	string srt1(poder_pokemon_enemigo);
-	string temp12;
-	int number1=0;
-
-	for (unsigned int i=0; i < srt1.size(); i++)
-	{
-	    //iterate the srt1ing to find the first "number1" character
-	    //if found create another loop to extract it
-	    //and then break the current one
-	    //thus extracting the FIRST encountered numeric block
-	    if (isdigit(srt1[i]))
-	    {
-	        for (unsigned int a = i; a < srt1.size(); a++)
-	        {
-	            temp12 += srt1[a];               
-	        }
-	      //the first numeric block is extracted
-	      break;
-	    }    
-	}
-
-	std::istringstream srt1eam(temp12);
-
-	stream >> number1;
-
-	std::cout << number1 << std::endl; 
-
-	int poder_enemigo_int = 0;
-
-	poder_enemigo_int = number1;
-
-	cout<<"number1 / poder ENEMIGO " << poder_enemigo_int + 1 << endl;
-
-
-
- 	 if (poder_int > poder_enemigo_int)
- 	 {
- 	 	std::cout << "Ganaste!!!" << endl;
-
- 	 }else if (poder_enemigo_int > poder_int)
- 	 {
- 	 	std::cout << "Perdiste..."   << endl;
- 	 }
-
-
-	///////////////////////////////////////////////////////////
-	//El pokemon no esta en el registro
-	if (matchpokemon == 0)
-	{
-		cout << "pokemon no registrado." << endl;
-		cout << "Presione cualquier tecla para continuar...";
-		
-		cin.get();
-		cin.get();
-
-		volver();
-	}
 
 }
-
-////////////////////////////////////////////////////////////////////////
-//Extraer los numeros de un string
-void extractIntegerWords(string str) 
-{ 
-    stringstream ss;     
-  
-    /* Storing the whole string into string stream */
-    ss << str; 
-  
-    /* Running loop till the end of the stream */
-    string temp; 
-    int found; 
-    while (!ss.eof()) { 
-  
-        /* extracting word by word from stream */
-        ss >> temp; 
-  
-        /* Checking the given word is integer or not */
-        if (stringstream(temp) >> found) 
-            cout << found << " "; 
-  
-        /* To save from space at the end of string */
-        temp = ""; 
-    } 
-} 
