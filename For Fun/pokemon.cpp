@@ -4,27 +4,33 @@
    
 using namespace std;
 
-string nombre_pokemon;
-string vida_pokemon;
-string ataque_pokemon;
-string defensa_pokemon;
-string poder_pokemon;
-string velocidad_pokemon;
-string tipo_pokemon;
 
-string nombre_pokemon_enemigo;
-string vida_pokemon_enemigo;
-string ataque_pokemon_enemigo;
-string defensa_pokemon_enemigo;
-string poder_pokemon_enemigo;
-string velocidad_pokemon_enemigo;
-string tipo_pokemon_enemigo;
+struct pokemon {
+    
+    string nombre;
+    string vida;
+    string ataque;
+    string defensa;
+    string poder;
+    string velocidad;
+    string tipo;
+
+}pokemon, aliado, enemigo;
+
+struct pokemon_int {
+    
+    int vida;
+    int ataque;
+    int defensa;
+    int poder;
+    int velocidad;
+    int tipo;
+
+}pokemon_int, aliado_int, enemigo_int;
 
 void menu();
 void registro();
 void volver();
-void pokemonrand();
-void Ostream();
 
 void capturar ();
 void pokedex ();
@@ -122,49 +128,49 @@ void capturar()
 
     //Nombre pokemon
     cout << "Nombre: ";
-    getline (cin, nombre_pokemon);
+    getline (cin, pokemon.nombre);
     cout << endl;
 
     //Vida pokemon
     cout << "Vida: ";
-    getline (cin, vida_pokemon);
+    getline (cin, pokemon.vida);
     cout << endl;
 
     //Ataque pokemon
     cout << "Ataque: ";
-    getline (cin, ataque_pokemon);
+    getline (cin, pokemon.ataque);
     cout << endl;
 
     //Defensa pokemon
     cout << "Defensa: ";
-    getline (cin, defensa_pokemon);
+    getline (cin, pokemon.defensa);
     cout << endl;
 
     //Poder pokemon
     cout << "Poder: ";
-    getline (cin, poder_pokemon);
+    getline (cin, pokemon.poder);
     cout << endl;
 
     //Velocidad pokemon
     cout << "Velocidad: ";
-    getline (cin, velocidad_pokemon);   
+    getline (cin, pokemon.velocidad);   
     cout << endl;
 
     //Tipo pokemon
     cout << "Tipo: ";
-    getline (cin, tipo_pokemon);
+    getline (cin, pokemon.tipo);
     cout << endl;
 
     //Guardar en registro
-    archivo << "Nombre: "    << nombre_pokemon    << endl;
-    archivo << "Vida: "      << vida_pokemon      << endl;
-    archivo << "Ataque: "    << ataque_pokemon    << endl;
-    archivo << "Defensa: "   << defensa_pokemon   << endl;
-    archivo << "Poder: "     << poder_pokemon     << endl;
-    archivo << "Velocidad: " << velocidad_pokemon << endl;
-    archivo << "Tipo: "      << tipo_pokemon      << endl << endl;
+    archivo << "Nombre: "    << pokemon.nombre    << endl;
+    archivo << "Vida: "      << pokemon.vida      << endl;
+    archivo << "Ataque: "    << pokemon.ataque    << endl;
+    archivo << "Defensa: "   << pokemon.defensa   << endl;
+    archivo << "Poder: "     << pokemon.poder     << endl;
+    archivo << "Velocidad: " << pokemon.velocidad << endl;
+    archivo << "Tipo: "      << pokemon.tipo      << endl << endl;
 
-    cout << "Haz capturado a " << nombre_pokemon << "!!" << endl;
+    cout << "Haz capturado a " << pokemon.nombre << "!!" << endl;
     cout << "Presione cualquier tecla para continuar...";
 
     //Cerrar archivo
@@ -196,10 +202,10 @@ void pokedex ()
     while (getline (archivo, texto))
     {
 
-        //Imprimir linea[0] y saltar linea[0]
+        //Imprimir lineax y saltar linea
         cout << texto << endl;
 
-        //Guardar linea[0] en texto
+        //Guardar linea en texto
         getline (archivo, texto);
 
         //Repetir
@@ -228,12 +234,12 @@ void p_aliado()
     int matchpokemon = 0;
 
     cout << "Introduzca el pokemon: ";
-    cin >> nombre_pokemon;
+    cin >> aliado.nombre;
     cout << endl;
 
     //Renombrar el nombre para que sea igual a Nombre: XXXXXXXXX 
     //para que concuerde con el nombre en el Registro
-    nombre_pokemon = "Nombre: " + nombre_pokemon;
+    aliado.nombre = "Nombre: " + aliado.nombre;
 
     if (!archivo.is_open ())
     {
@@ -247,42 +253,42 @@ void p_aliado()
     {
 
         //Si Nombre: XXXX == Nombre: XXXX ->
-        if (nombre_pokemon == linea[0])
+        if (aliado.nombre == linea[0])
         {
 
             //Obtener las siquientes lineas mientras no sea una linea[0] en blanco
-            if (linea[0].find (nombre_pokemon) != string::npos)
+            if (linea[0].find (aliado.nombre) != string::npos)
             {
 
-                //Esto es el vida = linea 2
+                //Esto es la vida = linea 2
                 getline (archivo, linea[0]);
-                vida_pokemon = linea[0];
-                cout << vida_pokemon << endl;
+                aliado.vida = linea[0];
+                cout << aliado.vida << endl;
 
                 //Esto es el ataque = linea 3
                 getline (archivo, linea[1]);
-                ataque_pokemon = linea[1];
-                cout << ataque_pokemon << endl;
+                aliado.ataque = linea[1];
+                cout << aliado.ataque << endl;
 
                 //Esto es la defensa = linea 4
                 getline (archivo, linea[2]);
-                defensa_pokemon = linea[2];
-                cout << defensa_pokemon << endl;
+                aliado.defensa = linea[2];
+                cout << aliado.defensa << endl;
 
-                //Esto es la velocidad = linea 5
+                //Esto es el poder = linea 5
                 getline (archivo, linea[3]);
-                poder_pokemon = linea[3];
-                cout << poder_pokemon << endl;
+                aliado.poder = linea[3];
+                cout << aliado.poder << endl;
 
                 //Esto es la velocidad = linea 6
                 getline (archivo, linea[5]);
-                velocidad_pokemon = linea[5];
-                cout << velocidad_pokemon << endl;
+                aliado.velocidad = linea[5];
+                cout << aliado.velocidad << endl;
 
-                //Esto es la velocidad = linea 7
+                //Esto es la tipo = linea 7
                 getline (archivo, linea[6]);
-                tipo_pokemon = linea[6];
-                cout << tipo_pokemon << endl;
+                aliado.tipo = linea[6];
+                cout << aliado.tipo << endl;
 
                 cout << endl;
 
@@ -307,6 +313,7 @@ void p_aliado()
         cin.get();
         cin.get();
 
+        //volver al menu principal
         volver();
 
     }
@@ -325,13 +332,13 @@ void p_enemigo()
     //Saber si el pokemon esta en el registro
     int matchpokemon = 0;
 
-    cout << "Introduzca el pokemon contra el que quiere combater: ", 
-    cin >> nombre_pokemon_enemigo, 
+    cout << "Introduzca el pokemon contra el que quiere combatir: ", 
+    cin >> enemigo.nombre, 
     cout << endl;
 
     //Renombrar el nombre para que sea igual a Nombre: XXXXXXXXX 
     //para que concuerde con el nombre en el Registro
-    nombre_pokemon_enemigo = "Nombre: "+nombre_pokemon_enemigo;
+    enemigo.nombre = "Nombre: " + enemigo.nombre;
 
 
     if (!archivo.is_open ())
@@ -344,41 +351,41 @@ void p_enemigo()
     while (getline (archivo, linea[0]))
     {
 
-        if (nombre_pokemon_enemigo == linea[0])
+        if (enemigo.nombre == linea[0])
         {
 
-            if (linea[0].find (nombre_pokemon_enemigo) != string::npos)
+            if (linea[0].find (enemigo.nombre) != string::npos)
             {
 
-            //Esto es el vida = linea 2
+            //Esto es la vida = linea 2
             getline (archivo, linea[0]);
-            vida_pokemon_enemigo = linea[0];
-            cout << vida_pokemon_enemigo << endl;
+            enemigo.vida = linea[0];
+            cout << enemigo.vida << endl;
 
             //Esto es el ataque = linea 3
             getline (archivo, linea[1]);
-            ataque_pokemon_enemigo = linea[1];
-            cout << ataque_pokemon_enemigo << endl;
+            enemigo.ataque = linea[1];
+            cout << enemigo.ataque << endl;
 
             //Esto es la defensa = linea 4
             getline (archivo, linea[2]);
-            defensa_pokemon_enemigo = linea[2];
-            cout << defensa_pokemon_enemigo << endl;
+            enemigo.defensa = linea[2];
+            cout << enemigo.defensa << endl;
 
-            //Esto es la velocidad = linea 5
+            //Esto es el poder = linea 5
             getline (archivo, linea[3]);
-            poder_pokemon_enemigo = linea[3];
-            cout << poder_pokemon_enemigo << endl;
+            enemigo.poder = linea[3];
+            cout << enemigo.poder << endl;
 
             //Esto es la velocidad = linea 6
             getline (archivo, linea[5]);
-            velocidad_pokemon_enemigo = linea[5];
-            cout << velocidad_pokemon_enemigo << endl;
+            enemigo.velocidad = linea[5];
+            cout << enemigo.velocidad << endl;
 
-            //Esto es la velocidad = linea 7
+            //Esto es el tipo = linea 7
             getline (archivo, linea[6]);
-            tipo_pokemon_enemigo = linea[6];
-            cout << tipo_pokemon_enemigo << endl;
+            enemigo.tipo = linea[6];
+            cout << enemigo.tipo << endl;
 
             cout << endl;
 
@@ -405,6 +412,7 @@ void p_enemigo()
         cin.get();
         cin.get();
 
+        //volver al menu principal
         volver();
 
     }
@@ -463,19 +471,39 @@ void combate()
     p_aliado();
 
     p_enemigo();
+    
+    //////////////////////////////////////////////////////////////////////
+    //Datos para trabajar
 
-    poder_pokemon = srt_to_int(poder_pokemon);
-    poder_pokemon_enemigo = srt_to_int(poder_pokemon_enemigo);
+    //Estadisticas numericas aliado
+    aliado_int.vida      = srt_to_int(aliado.vida);
+    aliado_int.ataque    = srt_to_int(aliado.ataque);
+    aliado_int.defensa   = srt_to_int(aliado.defensa);
+    aliado_int.poder     = srt_to_int(aliado.poder);
+    aliado_int.velocidad = srt_to_int(aliado.velocidad);
+    aliado_int.tipo      = srt_to_int(aliado.tipo);
 
-     if (poder_pokemon > poder_pokemon_enemigo)
-     {
-        std::cout << "Ganaste!!!" << endl;
+    //Estadisticas numericas enemigo
+    enemigo_int.vida      = srt_to_int(enemigo.vida);
+    enemigo_int.ataque    = srt_to_int(enemigo.ataque);
+    enemigo_int.defensa   = srt_to_int(enemigo.defensa);
+    enemigo_int.poder     = srt_to_int(enemigo.poder);
+    enemigo_int.velocidad = srt_to_int(enemigo.velocidad);
+    enemigo_int.tipo      = srt_to_int(enemigo.tipo);
 
-     }else if (poder_pokemon_enemigo > poder_pokemon)
-     {
-        std::cout << "Perdiste..."   << endl;
-     }
+    ////////////////////////////////////////////////////////////////////////
 
 
+
+        int primerturno;
+
+        if (aliado_int.ataque > enemigo_int.ataque)
+        {
+            primerturno = 1;    
+
+        }else if (aliado_int.ataque < enemigo_int.ataque)
+        {
+            primerturno = 0;
+        }
 
 }
