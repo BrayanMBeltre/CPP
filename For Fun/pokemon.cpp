@@ -1,30 +1,32 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <time.h>
    
 using namespace std;
-
 
 struct pokemon {
     
     string nombre;
-    string vida;
+    string ps;
     string ataque;
     string defensa;
-    string poder;
+    string atk_especial;
+    string def_especial;
     string velocidad;
-    string tipo;
+    string elemento;
 
 }pokemon, aliado, enemigo;
 
 struct pokemon_int {
     
-    int vida;
+    int ps;
     int ataque;
     int defensa;
-    int poder;
+    int atk_especial;
+    int def_especial;
     int velocidad;
-    int tipo;
+    int elemento;
 
 }pokemon_int, aliado_int, enemigo_int;
 
@@ -85,6 +87,8 @@ void menu(){
         system("cls");
         system("clear");
         std::cout << "Ingrese una opcion valida." << endl;
+        std::cout << "Pulse cualquier tecla para continuar..." << endl;
+        cin.get();
         menu();
     }
 
@@ -131,9 +135,9 @@ void capturar()
     getline (cin, pokemon.nombre);
     cout << endl;
 
-    //Vida pokemon
-    cout << "Vida: ";
-    getline (cin, pokemon.vida);
+    //Puntos de salud pokemon
+    cout << "Puntos de salud: ";
+    getline (cin, pokemon.ps);
     cout << endl;
 
     //Ataque pokemon
@@ -146,9 +150,14 @@ void capturar()
     getline (cin, pokemon.defensa);
     cout << endl;
 
-    //Poder pokemon
-    cout << "Poder: ";
-    getline (cin, pokemon.poder);
+    //ataque especial pokemon
+    cout << "Ataque especial: ";
+    getline (cin, pokemon.atk_especial);
+    cout << endl;
+
+    //defensa especial pokemon
+    cout << "Defensa especial: ";
+    getline (cin, pokemon.def_especial);
     cout << endl;
 
     //Velocidad pokemon
@@ -157,18 +166,19 @@ void capturar()
     cout << endl;
 
     //Tipo pokemon
-    cout << "Tipo: ";
-    getline (cin, pokemon.tipo);
+    cout << "Elemento: ";
+    getline (cin, pokemon.elemento);
     cout << endl;
 
     //Guardar en registro
-    archivo << "Nombre: "    << pokemon.nombre    << endl;
-    archivo << "Vida: "      << pokemon.vida      << endl;
-    archivo << "Ataque: "    << pokemon.ataque    << endl;
-    archivo << "Defensa: "   << pokemon.defensa   << endl;
-    archivo << "Poder: "     << pokemon.poder     << endl;
-    archivo << "Velocidad: " << pokemon.velocidad << endl;
-    archivo << "Tipo: "      << pokemon.tipo      << endl << endl;
+    archivo << "Nombre: "           << pokemon.nombre       << endl;
+    archivo << "Puntos de salud: "  << pokemon.ps           << endl;
+    archivo << "Ataque: "           << pokemon.ataque       << endl;
+    archivo << "Defensa: "          << pokemon.defensa      << endl;
+    archivo << "Ataque especial: "  << pokemon.atk_especial << endl;
+    archivo << "Defensa especial: " << pokemon.atk_especial << endl;
+    archivo << "Velocidad: "        << pokemon.velocidad    << endl;
+    archivo << "Tipo: "             << pokemon.elemento     << endl << endl;
 
     cout << "Haz capturado a " << pokemon.nombre << "!!" << endl;
     cout << "Presione cualquier tecla para continuar...";
@@ -228,7 +238,7 @@ void p_aliado()
 {
     ifstream archivo;
 
-    string linea[7];
+    string linea[8];
 
     //Saber si el pokemon esta en el registro
     int matchpokemon = 0;
@@ -260,10 +270,10 @@ void p_aliado()
             if (linea[0].find (aliado.nombre) != string::npos)
             {
 
-                //Esto es la vida = linea 2
+                //Esto es la ps = linea 2
                 getline (archivo, linea[0]);
-                aliado.vida = linea[0];
-                cout << aliado.vida << endl;
+                aliado.ps = linea[0];
+                cout << aliado.ps << endl;
 
                 //Esto es el ataque = linea 3
                 getline (archivo, linea[1]);
@@ -275,20 +285,25 @@ void p_aliado()
                 aliado.defensa = linea[2];
                 cout << aliado.defensa << endl;
 
-                //Esto es el poder = linea 5
+                //Esto es el atk_especial = linea 5
                 getline (archivo, linea[3]);
-                aliado.poder = linea[3];
-                cout << aliado.poder << endl;
+                aliado.atk_especial = linea[3];
+                cout << aliado.atk_especial << endl;
 
-                //Esto es la velocidad = linea 6
+                //Esto es el def_especial = linea 6
+                getline (archivo, linea[4]);
+                aliado.def_especial = linea[4];
+                cout << aliado.def_especial << endl;
+
+                //Esto es la velocidad = linea 7
                 getline (archivo, linea[5]);
                 aliado.velocidad = linea[5];
                 cout << aliado.velocidad << endl;
 
-                //Esto es la tipo = linea 7
+                //Esto es la elemento = linea 8
                 getline (archivo, linea[6]);
-                aliado.tipo = linea[6];
-                cout << aliado.tipo << endl;
+                aliado.elemento = linea[6];
+                cout << aliado.elemento << endl;
 
                 cout << endl;
 
@@ -327,7 +342,7 @@ void p_enemigo()
 {
     ifstream archivo;
 
-    string linea[7];
+    string linea[8];
 
     //Saber si el pokemon esta en el registro
     int matchpokemon = 0;
@@ -357,10 +372,10 @@ void p_enemigo()
             if (linea[0].find (enemigo.nombre) != string::npos)
             {
 
-            //Esto es la vida = linea 2
+            //Esto es la ps = linea 2
             getline (archivo, linea[0]);
-            enemigo.vida = linea[0];
-            cout << enemigo.vida << endl;
+            enemigo.ps = linea[0];
+            cout << enemigo.ps << endl;
 
             //Esto es el ataque = linea 3
             getline (archivo, linea[1]);
@@ -372,26 +387,29 @@ void p_enemigo()
             enemigo.defensa = linea[2];
             cout << enemigo.defensa << endl;
 
-            //Esto es el poder = linea 5
+            //Esto es el atk_especial = linea 5
             getline (archivo, linea[3]);
-            enemigo.poder = linea[3];
-            cout << enemigo.poder << endl;
+            enemigo.atk_especial = linea[3];
+            cout << enemigo.atk_especial << endl;
 
-            //Esto es la velocidad = linea 6
+            //Esto es el def_especial = linea 6
+            getline (archivo, linea[4]);
+            enemigo.def_especial = linea[4];
+            cout << enemigo.def_especial << endl;
+
+            //Esto es la velocidad = linea 7
             getline (archivo, linea[5]);
             enemigo.velocidad = linea[5];
             cout << enemigo.velocidad << endl;
 
-            //Esto es el tipo = linea 7
+            //Esto es el elemento = linea 8
             getline (archivo, linea[6]);
-            enemigo.tipo = linea[6];
-            cout << enemigo.tipo << endl;
+            enemigo.elemento = linea[6];
+            cout << enemigo.elemento << endl;
 
             cout << endl;
 
             //El pokemon esta en el registro
-
-
             matchpokemon = 1;
 
             }
@@ -476,34 +494,256 @@ void combate()
     //Datos para trabajar
 
     //Estadisticas numericas aliado
-    aliado_int.vida      = srt_to_int(aliado.vida);
-    aliado_int.ataque    = srt_to_int(aliado.ataque);
-    aliado_int.defensa   = srt_to_int(aliado.defensa);
-    aliado_int.poder     = srt_to_int(aliado.poder);
-    aliado_int.velocidad = srt_to_int(aliado.velocidad);
-    aliado_int.tipo      = srt_to_int(aliado.tipo);
+    aliado_int.ps           = srt_to_int(aliado.ps);
+    aliado_int.ataque       = srt_to_int(aliado.ataque);
+    aliado_int.defensa      = srt_to_int(aliado.defensa);
+    aliado_int.atk_especial = srt_to_int(aliado.atk_especial);
+    aliado_int.def_especial = srt_to_int(aliado.def_especial);
+    aliado_int.velocidad    = srt_to_int(aliado.velocidad);
+    aliado_int.elemento     = srt_to_int(aliado.elemento);
 
     //Estadisticas numericas enemigo
-    enemigo_int.vida      = srt_to_int(enemigo.vida);
-    enemigo_int.ataque    = srt_to_int(enemigo.ataque);
-    enemigo_int.defensa   = srt_to_int(enemigo.defensa);
-    enemigo_int.poder     = srt_to_int(enemigo.poder);
-    enemigo_int.velocidad = srt_to_int(enemigo.velocidad);
-    enemigo_int.tipo      = srt_to_int(enemigo.tipo);
+    enemigo_int.ps           = srt_to_int(enemigo.ps);
+    enemigo_int.ataque       = srt_to_int(enemigo.ataque);
+    enemigo_int.defensa      = srt_to_int(enemigo.defensa);
+    enemigo_int.atk_especial = srt_to_int(enemigo.atk_especial);
+    enemigo_int.def_especial = srt_to_int(enemigo.def_especial);
+    enemigo_int.velocidad    = srt_to_int(enemigo.velocidad);
+    enemigo_int.elemento     = srt_to_int(enemigo.elemento);
 
     ////////////////////////////////////////////////////////////////////////
+    //Combate
 
+    //Estadistica ataque
+    int aliado_ataque = aliado_int.ataque * 0.92;
+    int enemigo_ataque = enemigo_int.ataque * 0.92;
 
+    //Mientras los pokemones esten vivos
+    while(aliado_int.ps > 0 && enemigo_int.ps > 0) 
+    {
+        int turno = 1;
 
-        int primerturno;
-
-        if (aliado_int.ataque > enemigo_int.ataque)
+        //Quien ataca primero
+        if (aliado_int.velocidad > enemigo_int.velocidad)
         {
-            primerturno = 1;    
+            turno = 1;
 
-        }else if (aliado_int.ataque < enemigo_int.ataque)
+        }else if (enemigo_int.velocidad > aliado_int.velocidad)
         {
-            primerturno = 0;
+            turno = 0;
         }
+
+        int ataque_aliado;
+
+        //Numeros siempre aleatorios
+        srand(time(NULL));
+
+        //Ataque random del enemigo
+        int ataques_enemigo = 1 + rand() % 3;
+
+        //Nombre pokemon aliado
+        std::cout << aliado.nombre 
+        << "\t\t\t\t\t" 
+
+        //Nombre pokemon Enemigo
+        << enemigo.nombre << endl;
+
+        //Vida pokemon aliado
+        std::cout << "Vida = " << aliado_int.ps 
+        << "\t\t\t\t\t" 
+
+        //Vida pokemon Enemigo
+        << "Vida = " << enemigo_int.ps << endl;
+
+        //Defensa pokemon aliado
+        std::cout << "Defensa = " << aliado_int.defensa 
+        << "\t\t\t\t\t" 
+
+        //Vida pokemon enemigo
+        << "Defensa = " << enemigo_int.defensa << endl;
+
+        cout << endl << endl; 
+
+        //Ataques
+        std::cout << "Atacar" << endl;
+        std::cout << "1.- Ataque normal" << endl;
+        std::cout << "2.- Ataque especial" << endl;
+        std::cout << "3.- Bajar defensa" << endl;
+        std::cout << "Ataque: ", std::cin >> ataque_aliado;
+
+        //enemigo ataca primero
+        if (turno == 0)
+        {
+
+            switch (ataques_enemigo)
+            {
+                 case 1: 
+
+                        aliado_int.ps -= enemigo_ataque - aliado_int.defensa * (0.80);
+
+                        std::cout << endl;
+
+                        std::cout << aliado.nombre << " el enemigo ha usado ataque normal" << endl << endl;
+
+                 break;
+                 case 2: 
+
+                        aliado_int.ps -= enemigo_int.atk_especial - aliado_int.def_especial * (0.92);
+
+                        std::cout << endl;
+
+                        std::cout << enemigo.nombre << " ha usado: Ataque Especial" << endl << endl;
+
+                 break;
+                 case 3: 
+
+                        aliado_int.defensa = aliado_int.defensa - 6;
+
+                        std::cout << endl;
+
+                        std::cout << enemigo.nombre << " ha usado: Latigo" << endl << endl;
+
+                 break;
+                 default: 
+
+                        std::cout << "El enemigo uso una opcion invalida" << endl << endl;
+
+                 break;
+            }
+
+///////////////////////////////////////////////////////////////////////
+
+            switch (ataque_aliado)
+            {
+                case 1: 
+
+                        enemigo_int.ps -= ataque_aliado - enemigo_int.defensa * (0.80);
+
+                        std::cout << endl;
+
+                        std::cout << aliado.nombre << " ha usado ataque normal" << endl << endl;
+
+                 break;
+                 case 2: 
+
+                        enemigo_int.ps -= aliado_int.atk_especial - enemigo_int.def_especial * (0.92);
+
+                        std::cout << endl;
+
+                        std::cout << aliado.nombre << " ha usado: Ataque Especial" << endl << endl;
+
+                 break;
+                 case 3: 
+
+                        enemigo_int.defensa = enemigo_int.defensa - 6;
+
+                        std::cout << endl;
+
+                        std::cout << aliado.nombre << " ha usado: Latigo" << endl << endl;
+
+                 break;
+                 default: 
+
+                        std::cout << "usaste una opcion invalida"   << endl;
+
+                 break;
+            }
+
+
+        //Aliado ataca primero
+        }else if (turno == 1)
+        {
+
+            switch (ataque_aliado)
+            {
+                 case 1: 
+
+                        enemigo_int.ps -= aliado_ataque - enemigo_int.defensa * (0.80);
+
+                        std::cout << endl;
+
+                        std::cout << aliado.nombre << " ha usado ataque normal" << endl << endl;
+
+                 break;
+                 case 2: 
+
+                        enemigo_int.ps -= aliado_int.atk_especial - enemigo_int.def_especial * (0.92);
+
+                        std::cout << endl;
+
+                        std::cout << aliado.nombre << " ha usado: Ataque Especial" << endl << endl;
+
+                 break;
+                 case 3: 
+
+                        enemigo_int.defensa = enemigo_int.defensa - 6;
+
+                        std::cout << endl;
+
+                        std::cout << aliado.nombre << " ha usado: Latigo" << endl << endl;
+
+                 break;
+                 default: 
+
+                        std::cout << "usaste una opcion invalida"   << endl;
+
+                 break;
+            }
+
+///////////////////////////////////////////////////////////////////////////////
+
+            switch (ataques_enemigo)
+            {
+                 case 1: 
+
+                        aliado_int.ps -= enemigo_ataque - aliado_int.defensa * (0.80);
+
+                        std::cout << endl;
+
+                        std::cout << enemigo .nombre << " ha usado ataque normal" << endl << endl;
+
+                 break;
+                 case 2: 
+
+                        aliado_int.ps -= enemigo_int.atk_especial - aliado_int.def_especial * (0.92);
+
+                        std::cout << endl;
+
+                        std::cout << enemigo.nombre << " ha usado: Ataque Especial" << endl << endl;
+
+                 break;
+                 case 3: 
+
+                        aliado_int.defensa = aliado_int.defensa - 6;
+
+                        std::cout << endl;
+
+                        std::cout << enemigo.nombre << " ha usado: Latigo" << endl << endl;
+
+                 break;
+                 default: 
+
+                        std::cout << "El enemigo uso una opcion invalida" << endl;
+
+                 break;
+                }
+
+        }
+
+
+    }
+    
+
+
+    if (aliado_int.ps < 0)
+    {
+        std::cout << "Perdiste..." << endl;
+
+    }else if (enemigo_int.ps < 0)
+    {
+        std::cout << "Ganaste!!!" << endl;
+    }
+
+    exit(1);
 
 }
