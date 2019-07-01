@@ -486,9 +486,17 @@ int srt_to_int(string texto)
 
 void combate()
 {
+
     p_aliado();
 
     p_enemigo();
+
+    //Mostrar estadisticas
+    std::cout << "Presione cualquier tecla para ir a la batalla!!!" ;
+    cin.get();
+    cin.get();
+    system("cls");
+    system("clear");
     
     //////////////////////////////////////////////////////////////////////
     //Datos para trabajar
@@ -521,6 +529,7 @@ void combate()
     //Mientras los pokemones esten vivos
     while(aliado_int.ps > 0 && enemigo_int.ps > 0) 
     {
+
         int turno = 1;
 
         //Quien ataca primero
@@ -533,6 +542,7 @@ void combate()
             turno = 0;
         }
 
+        //ataque que hara el alidado
         int ataque_aliado;
 
         //Numeros siempre aleatorios
@@ -542,7 +552,8 @@ void combate()
         int ataques_enemigo = 1 + rand() % 3;
 
         //Nombre pokemon aliado
-        std::cout << aliado.nombre 
+        std::cout << aliado.nombre
+
         << "\t\t\t\t\t" 
 
         //Nombre pokemon Enemigo
@@ -550,6 +561,7 @@ void combate()
 
         //Vida pokemon aliado
         std::cout << "Vida = " << aliado_int.ps 
+
         << "\t\t\t\t\t" 
 
         //Vida pokemon Enemigo
@@ -557,6 +569,7 @@ void combate()
 
         //Defensa pokemon aliado
         std::cout << "Defensa = " << aliado_int.defensa 
+
         << "\t\t\t\t\t" 
 
         //Vida pokemon enemigo
@@ -565,11 +578,12 @@ void combate()
         cout << endl << endl; 
 
         //Ataques
-        std::cout << "Atacar" << endl;
-        std::cout << "1.- Ataque normal" << endl;
+        std::cout << "Atacar"              << endl;
+        std::cout << "1.- Ataque normal"   << endl;
         std::cout << "2.- Ataque especial" << endl;
-        std::cout << "3.- Bajar defensa" << endl;
-        std::cout << "Ataque: ", std::cin >> ataque_aliado;
+        std::cout << "3.- Bajar defensa"   << endl;
+        std::cout << "Ataque: "; 
+        std::cin >> ataque_aliado;
 
         //enemigo ataca primero
         if (turno == 0)
@@ -730,6 +744,13 @@ void combate()
 
         }
 
+        //Parar luego del ataque
+        cin.get();
+        cin.get();
+
+        // Limpiar
+        system("clear");
+
 
     }
     
@@ -747,3 +768,5 @@ void combate()
     exit(1);
 
 }
+
+
