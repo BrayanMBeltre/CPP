@@ -7,7 +7,7 @@ Matricula: 2019-0946 */
 
 using namespace std;
 
-void main()
+int main()
 {
     int f,valor,suma;
     suma=0;
