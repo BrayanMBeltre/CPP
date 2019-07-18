@@ -7,7 +7,6 @@ int main ()
 {
 
     char AB = '-';
-
     char ID = '|';
 	
     int pos_x = 30;
