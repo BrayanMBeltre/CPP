@@ -6,7 +6,7 @@ Matricula: 2019-0946 */
 
 using namespace std;
 
-void main()
+int main()
 {
     int lado,perimetro;
     cout <<"Ingrese el lado del cuadrado:";

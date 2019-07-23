@@ -50,13 +50,19 @@ void Persona::esMayorEdad()
 
 int main()
 {
+    Persona persona[1];
+    Persona persona[2];
+    Persona persona[3];
+
     for (int i = 0; i < 3; i++)
     {
-        Persona persona[i];
+        
         persona[i].inicializar();
         persona[i].imprimir();
         persona[i].esMayorEdad();
     }
+
+    persona[2].imprimir();
 
     return 0;
 }

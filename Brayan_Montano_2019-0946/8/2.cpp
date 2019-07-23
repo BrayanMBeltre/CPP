@@ -7,7 +7,7 @@ Matricula: 2019-0946 */
 
 using namespace std;
 
-void main()
+int main()
 {
     int num1,num2,num3;
     cout <<"Ingrese primer valor:";

@@ -88,7 +88,7 @@ int main()
         for (int j = 0; j < 4; j++)
         {
             TurnosPisosPersonas[i][j] = TurnosPersonas[i];
-           /TurnosPisosPersonas[i][j] = PisosPersonas[i];
+            TurnosPisosPersonas[i][j] = PisosPersonas[i];
             cout << "Turnos"<< "[" << i + 1 << "]" << TurnosPisosPersonas[i][j] << " Pisos"  << "[" << j + 1 << "]" << TurnosPisosPersonas[j][i] << endl;
         }
         
